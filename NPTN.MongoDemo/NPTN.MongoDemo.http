@@ -1,0 +1,6 @@
+@NPTN.MongoDemo_HostAddress = http://localhost:5023
+
+GET {{NPTN.MongoDemo_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
