@@ -1,6 +1,5 @@
 ﻿using MediatR;
-using NPTN.MongoDemo.Application.Movies.GetByTitle;
-using NPTN.MongoDemo.Application.Services;
+using NPTN.MongoDemo.Application.UseCases.Movies.GetByTitle;
 
 namespace NPTN.MongoDemo.Api.Endpoints.Movies
 {

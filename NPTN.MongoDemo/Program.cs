@@ -1,8 +1,7 @@
-using NPTN.MongoDemo.Api.Endpoints;
 using NPTN.MongoDemo.Api.Extensions;
 using NPTN.MongoDemo.Application;
-using NPTN.MongoDemo.Application.Options;
-using NPTN.MongoDemo.Application.Services;
+using NPTN.MongoDemo.Infrastructure;
+using NPTN.MongoDemo.Infrastructure.Options;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,7 +14,9 @@ builder.Services.AddEndpoints(Assembly.GetExecutingAssembly());
 
 builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection(MongoDbSettings.SectionName));
 
-builder.Services.AddApplicationLayer();
+builder.Services
+    .AddApplicationLayer()
+    .AddInfrastructureLayer();
 
 var app = builder.Build();
 

@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NPTN.MongoDemo.Application\NPTN.MongoDemo.Application.csproj" />
+    <ProjectReference Include="..\NPTN.MongoDemo.Infrastructure\NPTN.MongoDemo.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
