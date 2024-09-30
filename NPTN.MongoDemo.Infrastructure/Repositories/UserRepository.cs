@@ -10,25 +10,26 @@ namespace NPTN.MongoDemo.Infrastructure.Repositories
     {
         public async Task<string> CreateUserAsync(User user, CancellationToken cancellationToken = default)
         {
-            var collection = MongoDatabase.GetCollection<User>(UsersCollection);
-            await collection.InsertOneAsync(user, null, cancellationToken);
+            await UsersCollection.InsertOneAsync(user, null, cancellationToken);
 
             return user.Id;
         }
 
-        public async Task<User> GetUserByIdAsync(string id, CancellationToken cancellationToken = default)
+        public async Task<User?> GetUserByIdAsync(string id, CancellationToken cancellationToken = default)
         {
-            var collection = MongoDatabase.GetCollection<User>(UsersCollection);
-
-            return await collection
+            return await UsersCollection
                 .Find(x => x.Id == id)
                 .FirstOrDefaultAsync(cancellationToken);
         }
 
         public async Task UpdateUserAsync(User user, CancellationToken cancellationToken = default)
         {
-            var collection = MongoDatabase.GetCollection<User>(UsersCollection);
-            await collection.ReplaceOneAsync(x => x.Id == user.Id, user, cancellationToken: cancellationToken);
+            await UsersCollection.ReplaceOneAsync(x => x.Id == user.Id, user, cancellationToken: cancellationToken);
+        }
+
+        public async Task DeleteUserByIdAsync(string id, CancellationToken cancellationToken = default)
+        {
+            await UsersCollection.DeleteOneAsync(x => x.Id == id, cancellationToken);
         }
     }
 }
