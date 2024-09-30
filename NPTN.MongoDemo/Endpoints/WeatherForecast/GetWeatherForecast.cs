@@ -22,7 +22,7 @@
                 return forecast;
             })
                 .WithTags(EndpointTag.WeatherForecast)
-                .WithName("GetWeatherForecast")
+                .WithName(nameof(GetWeatherForecast))
                 .WithOpenApi();
         }
     }

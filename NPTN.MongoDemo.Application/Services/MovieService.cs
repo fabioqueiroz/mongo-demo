@@ -3,6 +3,7 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
 using NPTN.MongoDbDemo.Api.Endpoints.Movies;
+using NPTN.MongoDemo.Application.Movies.GetByTitle;
 using NPTN.MongoDemo.Application.Options;
 
 namespace NPTN.MongoDemo.Application.Services
@@ -39,19 +40,19 @@ namespace NPTN.MongoDemo.Application.Services
         }
     }
 
-    public class MovieResponse
-    {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string? Id { get; init; }
+    //public class MovieResponse
+    //{
+    //    [BsonId]
+    //    [BsonRepresentation(BsonType.ObjectId)]
+    //    public string? Id { get; init; }
 
-        [BsonElement("title")]
-        public string Title { get; init; } = string.Empty;
+    //    [BsonElement("title")]
+    //    public string Title { get; init; } = string.Empty;
 
-        [BsonElement("plot")]
-        public string Plot { get; init; } = string.Empty;
+    //    [BsonElement("plot")]
+    //    public string Plot { get; init; } = string.Empty;
 
-        [BsonElement("year")]
-        public int Year { get; init; }
-    }
+    //    [BsonElement("year")]
+    //    public int Year { get; init; }
+    //}
 }
