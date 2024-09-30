@@ -9,9 +9,9 @@ namespace NPTN.MongoDemo.Infrastructure.Repositories
 {
     internal class ReadOnlyUserRepository(IOptions<MongoDbSettings> mongoDatabaseSettings) : BaseRepository(mongoDatabaseSettings), IReadOnlyUserRepository
     {
-        public async Task<UserResponse> GetUserByEmail(string email, CancellationToken cancellationToken = default)
+        public async Task<UserResponse> GetUserByEmailAsync(string email, CancellationToken cancellationToken = default)
         {
-            var collection = MongoDatabase.GetCollection<User>(UserssCollection);
+            var collection = MongoDatabase.GetCollection<User>(UsersCollection);
             var filter = Builders<User>.Filter.Eq("email", email);
             var document = await collection.Find(filter).FirstAsync(cancellationToken);
 

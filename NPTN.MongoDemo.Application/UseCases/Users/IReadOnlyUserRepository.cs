@@ -9,6 +9,6 @@ namespace NPTN.MongoDemo.Application.UseCases.Users
 {
     public interface IReadOnlyUserRepository
     {
-        Task<UserResponse> GetUserByEmail(string email, CancellationToken cancellationToken = default);
+        Task<UserResponse> GetUserByEmailAsync(string email, CancellationToken cancellationToken = default);
     }
 }

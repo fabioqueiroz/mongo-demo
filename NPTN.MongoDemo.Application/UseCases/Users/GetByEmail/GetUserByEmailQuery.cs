@@ -7,14 +7,9 @@ using System.Threading.Tasks;
 
 namespace NPTN.MongoDemo.Application.UseCases.Users.GetByEmail
 {
-    public sealed class GetUserByEmailQuery : IRequest<UserResponse>
+    public sealed class GetUserByEmailQuery(string email) : IRequest<UserResponse>
     {
-        public string Email { get; init; } = string.Empty;
-
-        public GetUserByEmailQuery(string email)
-        {
-            Email = email;
-        }
+        public string Email { get; } = email;
 
         internal class GetUserByEmailQueryHandler : IRequestHandler<GetUserByEmailQuery, UserResponse>
         {
@@ -25,7 +20,7 @@ namespace NPTN.MongoDemo.Application.UseCases.Users.GetByEmail
             }
             public async Task<UserResponse> Handle(GetUserByEmailQuery request, CancellationToken cancellationToken)
             {
-                return await _repository.GetUserByEmail(request.Email, cancellationToken);
+                return await _repository.GetUserByEmailAsync(request.Email, cancellationToken);
             }
         }
     }

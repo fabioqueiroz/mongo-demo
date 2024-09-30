@@ -9,7 +9,7 @@ namespace NPTN.MongoDemo.Api.Endpoints.Users
         {
             app.MapGet("/users/{email}", async (string email, IMediator mediator, CancellationToken cancellationToken) =>
             {
-                return await mediator.Send(new GetUserByEmailQuery(email), cancellationToken); // joe_dempsie@gameofthron.es // joe_dempsie%40gameofthron.es
+                return Results.Ok(await mediator.Send(new GetUserByEmailQuery(email), cancellationToken)); // joe_dempsie@gameofthron.es // joe_dempsie%40gameofthron.es
             })
                 .WithTags(EndpointTag.Users)
                 .WithName(nameof(GetUserByEmail))

@@ -9,7 +9,7 @@ namespace NPTN.MongoDemo.Api.Endpoints.Movies
         {
             app.MapGet("/movies/{title}", async (string title, IMediator mediator, CancellationToken cancellationToken) =>
             {
-                return await mediator.Send(new GetMovieByTitleQuery(title), cancellationToken); // "Back to the Future" // Back%20to%20the%20Future
+                return Results.Ok(await mediator.Send(new GetMovieByTitleQuery(title), cancellationToken)); // "Back to the Future" // Back%20to%20the%20Future
             })
                 .WithTags(EndpointTag.Movies)
                 .WithName(nameof(GetMovieByTitle))
