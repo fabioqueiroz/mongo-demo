@@ -1,13 +1,6 @@
 ﻿using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using NPTN.MongoDemo.Application.Behaviours;
-using NPTN.MongoDemo.Application.UseCases.Movies;
-//using NPTN.MongoDemo.Application.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NPTN.MongoDemo.Application
 {
