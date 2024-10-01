@@ -11,9 +11,6 @@ namespace NPTN.MongoDemo.Infrastructure.Repositories
     {
         public async Task<MovieResponse> GetMovieByTitleAsync(string title, CancellationToken cancellationToken = default)
         {
-            var filter = Builders<Movie>.Filter.Eq("title", title);
-            var document = await MoviesCollection!.Find(filter).FirstAsync(cancellationToken);
-
             var projection = new FindExpressionProjectionDefinition<Movie, MovieResponse>(movie => new MovieResponse
             {
                 Id = movie.Id,
@@ -22,8 +19,8 @@ namespace NPTN.MongoDemo.Infrastructure.Repositories
                 Plot = movie.Plot
             });
 
-            return await MoviesCollection!
-                .Find(filter)
+            return await MoviesCollection
+                .Find(x => x.Title.Contains(title))
                 .Project(projection)
                 .FirstOrDefaultAsync(cancellationToken);
         }

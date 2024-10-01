@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using FluentValidation;
+using MediatR;
 
 namespace NPTN.MongoDemo.Application.UseCases.Movies.GetByTitle
 {
@@ -15,7 +16,10 @@ namespace NPTN.MongoDemo.Application.UseCases.Movies.GetByTitle
             }
             public async Task<MovieResponse> Handle(GetMovieByTitleQuery request, CancellationToken cancellationToken)
             {
-                return await _repository.GetMovieByTitleAsync(request.Title, cancellationToken);
+                var movie = await _repository.GetMovieByTitleAsync(request.Title, cancellationToken)
+                    ?? throw new ValidationException($"Movie with title {request.Title} not found.");
+
+                return movie;
             }
         }
     }

@@ -9,23 +9,15 @@ namespace NPTN.MongoDemo.Infrastructure.Repositories
     internal abstract class BaseRepository
     {
         protected IMongoDatabase MongoDatabase { get; private set; }
-        protected string MoviesCollectionName { get; private set; }
-        protected string UsersCollectionName { get; private set; }
-        protected IMongoCollection<Movie?> MoviesCollection { get => GetMoviesCollection(); }
-        protected IMongoCollection<User?> UsersCollection {  get => GetUsersCollection(); }
+        protected IMongoCollection<Movie> MoviesCollection { get; private set; }
+        protected IMongoCollection<User> UsersCollection { get; private set; }
 
         public BaseRepository(IOptions<MongoDbSettings> mongoDatabaseSettings)
         {
             var mongoClient = new MongoClient(mongoDatabaseSettings.Value.ConnectionString);
             MongoDatabase = mongoClient.GetDatabase(mongoDatabaseSettings.Value.MoviesDatabaseName);
-            MoviesCollectionName = mongoDatabaseSettings.Value.MoviesCollectionName;
-            UsersCollectionName = mongoDatabaseSettings.Value.UsersCollectionName;
+            MoviesCollection = MongoDatabase.GetCollection<Movie>(mongoDatabaseSettings.Value.MoviesCollectionName);
+            UsersCollection = MongoDatabase.GetCollection<User>(mongoDatabaseSettings.Value.UsersCollectionName);
         }
-
-        private IMongoCollection<Movie?> GetMoviesCollection()
-            => MongoDatabase.GetCollection<Movie?>(MoviesCollectionName);
-
-        private IMongoCollection<User?> GetUsersCollection()
-            => MongoDatabase.GetCollection<User?>(UsersCollectionName);
     }
 }

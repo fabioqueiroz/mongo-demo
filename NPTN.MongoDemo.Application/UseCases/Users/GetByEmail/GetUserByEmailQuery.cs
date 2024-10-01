@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using FluentValidation;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,10 @@ namespace NPTN.MongoDemo.Application.UseCases.Users.GetByEmail
             }
             public async Task<UserResponse> Handle(GetUserByEmailQuery request, CancellationToken cancellationToken)
             {
-                return await _repository.GetUserByEmailAsync(request.Email, cancellationToken);
+                var user = await _repository.GetUserByEmailAsync(request.Email, cancellationToken) 
+                    ?? throw new ValidationException($"User with email {request.Email} not found.");
+
+                return user;
             }
         }
     }

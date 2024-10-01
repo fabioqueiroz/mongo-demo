@@ -11,7 +11,6 @@ namespace NPTN.MongoDemo.Infrastructure.Repositories
         public async Task<string> CreateUserAsync(User user, CancellationToken cancellationToken = default)
         {
             await UsersCollection.InsertOneAsync(user, null, cancellationToken);
-
             return user.Id;
         }
 
