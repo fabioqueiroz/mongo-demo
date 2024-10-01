@@ -16,16 +16,7 @@ namespace NPTN.MongoDemo.Application
 
             services.AddValidatorsFromAssembly(typeof(ContainerRegistration).Assembly, includeInternalTypes: true);
 
-            //services.AddServices();
-
             return services;
         }
-
-        //private static IServiceCollection AddServices(this IServiceCollection services)
-        //{
-        //    services.AddScoped<IMovieService, MovieService>();
-
-        //    return services;
-        //}
     }
 }

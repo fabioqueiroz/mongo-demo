@@ -10,9 +10,7 @@ namespace NPTN.MongoDemo.Infrastructure.Options
     {
         public const string SectionName = "MongoDatabase";
         public string ConnectionString { get; init; } = string.Empty;
-
         public string MoviesDatabaseName { get; init; } = string.Empty;
-
         public string MoviesCollectionName { get; init; } = string.Empty;
         public string UsersCollectionName { get; init; } = string.Empty;
     }

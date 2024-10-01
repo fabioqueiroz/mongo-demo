@@ -8,16 +8,15 @@ namespace NPTN.MongoDemo.Infrastructure.Repositories
 {
     internal abstract class BaseRepository
     {
-        protected IMongoDatabase MongoDatabase { get; private set; }
         protected IMongoCollection<Movie> MoviesCollection { get; private set; }
         protected IMongoCollection<User> UsersCollection { get; private set; }
 
         public BaseRepository(IOptions<MongoDbSettings> mongoDatabaseSettings)
         {
             var mongoClient = new MongoClient(mongoDatabaseSettings.Value.ConnectionString);
-            MongoDatabase = mongoClient.GetDatabase(mongoDatabaseSettings.Value.MoviesDatabaseName);
-            MoviesCollection = MongoDatabase.GetCollection<Movie>(mongoDatabaseSettings.Value.MoviesCollectionName);
-            UsersCollection = MongoDatabase.GetCollection<User>(mongoDatabaseSettings.Value.UsersCollectionName);
+            var db = mongoClient.GetDatabase(mongoDatabaseSettings.Value.MoviesDatabaseName);
+            MoviesCollection = db.GetCollection<Movie>(mongoDatabaseSettings.Value.MoviesCollectionName);
+            UsersCollection = db.GetCollection<User>(mongoDatabaseSettings.Value.UsersCollectionName);
         }
     }
 }

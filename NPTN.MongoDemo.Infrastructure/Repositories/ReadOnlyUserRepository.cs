@@ -11,9 +11,6 @@ namespace NPTN.MongoDemo.Infrastructure.Repositories
     {
         public async Task<UserResponse> GetUserByEmailAsync(string email, CancellationToken cancellationToken = default)
         {
-            //var filter = Builders<User>.Filter.Eq("email", email);
-            //var document = await UsersCollection.Find(filter).FirstAsync(cancellationToken);
-
             var projection = new FindExpressionProjectionDefinition<User, UserResponse>(user => 
                 new UserResponse(user.Id, user.Name, user.Email));
 
