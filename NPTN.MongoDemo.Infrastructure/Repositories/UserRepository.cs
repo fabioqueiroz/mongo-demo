@@ -1,12 +1,15 @@
 ﻿using Microsoft.Extensions.Options;
 using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 using NPTN.MongoDemo.Application.UseCases.Users;
 using NPTN.MongoDemo.Domain.Users;
+using NPTN.MongoDemo.Infrastructure.DatabaseConnection;
 using NPTN.MongoDemo.Infrastructure.Options;
 
 namespace NPTN.MongoDemo.Infrastructure.Repositories
 {
-    internal class UserRepository(IOptions<MongoDbSettings> mongoDatabaseSettings) : BaseRepository(mongoDatabaseSettings), IUserRepository
+    internal class UserRepository(IOptions<MongoDbSettings> mongoDatabaseSettings, IMongoConnection mongoConnection) 
+        : BaseRepository(mongoDatabaseSettings, mongoConnection), IUserRepository
     {
         public async Task<string> CreateUserAsync(User user, CancellationToken cancellationToken = default)
         {

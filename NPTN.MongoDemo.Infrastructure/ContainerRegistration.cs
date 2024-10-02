@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using NPTN.MongoDemo.Application.UseCases.Movies;
 using NPTN.MongoDemo.Application.UseCases.Users;
+using NPTN.MongoDemo.Infrastructure.DatabaseConnection;
 using NPTN.MongoDemo.Infrastructure.Repositories;
 
 namespace NPTN.MongoDemo.Infrastructure
@@ -9,6 +10,8 @@ namespace NPTN.MongoDemo.Infrastructure
     {
         public static IServiceCollection AddInfrastructureLayer(this IServiceCollection services)
         {
+            services.AddSingleton<IMongoConnection, MongoConnection>();
+
             services
                 .AddScoped<IReadOnlyMovieRepository, ReadOnlyMovieRepository>()
                 .AddScoped<IReadOnlyUserRepository, ReadOnlyUserRepository>()
