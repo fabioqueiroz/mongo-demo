@@ -1,5 +1,7 @@
 ﻿using Amazon.Runtime.Internal;
+using FluentValidation;
 using MediatR;
+using NPTN.MongoDemo.Application.Exceptions;
 using NPTN.MongoDemo.Domain.Users;
 
 namespace NPTN.MongoDemo.Application.UseCases.Users.Update
@@ -22,7 +24,7 @@ namespace NPTN.MongoDemo.Application.UseCases.Users.Update
             public async Task Handle(UpdateUserCommand request, CancellationToken cancellationToken)
             {
                 var existingUser = await _repository.GetUserByIdAsync(request.Id, cancellationToken) 
-                    ?? throw new Exception("User not found.");
+                    ?? throw new EntityNotFoundException("User not found.");
 
                 if (existingUser!.Email != request.Email)
                 {

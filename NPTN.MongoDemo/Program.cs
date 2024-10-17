@@ -15,6 +15,7 @@ builder.Services.AddEndpoints(Assembly.GetExecutingAssembly());
 builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection(MongoDbSettings.SectionName));
 
 builder.Services
+    .AddHttpContextAccessor()
     .AddApplicationLayer()
     .AddInfrastructureLayer();
 
@@ -27,6 +28,12 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+
+    app.UseExceptionHandler(new ExceptionHandlerOptions
+    {
+        ExceptionHandlingPath = "/error",
+        AllowStatusCode404Response = true
+    });
 }
 
 app.UseHttpsRedirection();
