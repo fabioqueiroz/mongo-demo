@@ -13,5 +13,7 @@ namespace NPTN.MongoDemo.Infrastructure.Options
         public string MoviesDatabaseName { get; init; } = string.Empty;
         public string MoviesCollectionName { get; init; } = string.Empty;
         public string UsersCollectionName { get; init; } = string.Empty;
+        public string CommentsCollectionName { get; init; } = string.Empty;
+        public string MovieCommentsMaterialisedViewName { get; init; } = string.Empty;
     }
 }

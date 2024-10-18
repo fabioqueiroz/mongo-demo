@@ -34,7 +34,7 @@ namespace NPTN.MongoDemo.Api.Endpoints.Error
                     //_logger.LogInformation(entityNotFoundException, $"{nameof(EntityNotFoundException)} occurred.");
                     return Results.Problem(detail: entityNotFoundException.Message, statusCode: 404, title: "Not Found.");
                 default:
-                    return Results.Problem(detail: exception.Message, statusCode: 500, title: $"{typeof(Exception)} Found.");
+                    return Results.Problem(detail: exception.StackTrace, statusCode: 500, title: exception.Message);
             }
         }
     }

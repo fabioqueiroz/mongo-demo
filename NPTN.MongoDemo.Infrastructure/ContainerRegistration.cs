@@ -15,7 +15,8 @@ namespace NPTN.MongoDemo.Infrastructure
             services
                 .AddScoped<IReadOnlyMovieRepository, ReadOnlyMovieRepository>()
                 .AddScoped<IReadOnlyUserRepository, ReadOnlyUserRepository>()
-                .AddScoped<IUserRepository, UserRepository>();
+                .AddScoped<IUserRepository, UserRepository>()
+                .AddScoped<IMovieCommentsMaterialisedViewRepository, MovieCommentsMaterialisedViewRepository>();
 
             return services;
         }
