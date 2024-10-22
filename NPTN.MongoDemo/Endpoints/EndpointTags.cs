@@ -6,5 +6,6 @@
         public const string Movies = "Movies";
         public const string Users = "Users";
         public const string Error = "Error";
+        public const string Atlas = "Atlas";
     }
 }

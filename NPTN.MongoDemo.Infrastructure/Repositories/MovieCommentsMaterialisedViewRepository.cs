@@ -76,8 +76,8 @@ namespace NPTN.MongoDemo.Infrastructure.Repositories
             //    })
             //    .ToListAsync(cancellationToken);
 
-            //await DatabaseInstance.DropCollectionAsync(mongoDatabaseSettings.Value.MovieCommentsMaterialisedViewName);
-            //await MovieCommentsMaterialisedViewCollection.InsertManyAsync(matViewResult, null, cancellationToken);
+            await DatabaseInstance.DropCollectionAsync(mongoDatabaseSettings.Value.MovieCommentsMaterialisedViewName);
+            await MovieCommentsMaterialisedViewCollection.InsertManyAsync(matViewResult, null, cancellationToken);
 
             return matViewResult;
         }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Options;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using NPTN.MongoDbDemo.Api.Endpoints.Movies;
 using NPTN.MongoDemo.Domain.Comments;

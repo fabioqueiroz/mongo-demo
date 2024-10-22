@@ -13,6 +13,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddEndpoints(Assembly.GetExecutingAssembly());
 
 builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection(MongoDbSettings.SectionName));
+builder.Services.Configure<MongoDbAtlasSettings>(builder.Configuration.GetSection(MongoDbAtlasSettings.SectionName));
 
 builder.Services
     .AddHttpContextAccessor()
